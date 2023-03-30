@@ -46,8 +46,7 @@ const userController = {
             const existingEmail = await UserModel.findOne(filter);
             console.log(existingEmail)
             if (existingEmail) {
-                res.status(400).json({ msg: "Esse e-mail já é utilizado!" });
-                return
+                res.status(404).json({ msg: "Esse e-mail já é utilizado!" });
             }
             const response = await UserModel.create(user)
 
@@ -69,7 +68,7 @@ const userController = {
             }
 
             if (!user.id) {
-                res.status(400).json({ msg: "Informe o id do usuário!" })
+                res.status(404).json({ msg: "Informe o id do usuário!" })
             }
 
             const filter = { _id: user.id };
@@ -89,7 +88,7 @@ const userController = {
         try {
             const id = req.params.id
             const user = await UserModel.findById(id)
-            
+
             // tratando erro para caso não encontre o id
             if (!user) {
                 res.status(404).json({ msg: "Usuário não encontrado" })
