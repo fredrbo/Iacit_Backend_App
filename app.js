@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+require('dotenv').config();
+
+const port = process.env.PORT || 3000;
+
 
 app.use((req, res, next) => {
 	//Qual site tem permissão de realizar a conexão, no exemplo abaixo está o "*" indicando que qualquer site pode fazer a conexão
@@ -23,7 +27,7 @@ const routes = require("./routes/router");
 app.use('/api', routes)
 
 
-app.listen(3000, function(){
-    console.log("Servidor rodando na porta 3000");
+app.listen( port, function(){
+    console.log("Servidor rodando na porta " + port);
 })
 
