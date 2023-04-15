@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 
 const port = process.env.PORT || 3000;
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 
 app.use((req, res, next) => {
